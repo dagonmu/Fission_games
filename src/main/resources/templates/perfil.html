@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${usuario.nickName}">Perfil de usuario</title>
+    <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+    <div th:insert="~{fragments/general :: navbar}"></div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <form method="post" enctype="multipart/form-data" th:action="@{/perfil/editar}" th:object="${usuario}">
+                    <input type="hidden" id="id" name="id"  th:field="*{id}"/>
+                    <input type="hidden" id="email" name="email"  th:field="*{email}"/>
+                    <input type="hidden" id="password" name="password"  th:field="*{password}"/>
+                    <input type="hidden" id="avatar" name="avatar" th:field="*{avatar}">
+                    <input type="hidden" th:field="*{roles}">
+
+                    <div class="text-center mb-4">
+                        <div class="mx-auto d-block">
+                            <label class="mb-0" for="file">
+                                <img th:src="${usuario.avatar}" alt="Image not found" onerror="this.onerror=null;this.src='/img/Avatar.png';" class="border border-white border-2 rounded-circle p-1 animacion" height="120" width="120">
+                            </label>
+                        </div>
+                        <input type="file" id="file" name="file" class="invisible" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nick" class="form-label">Nick</label>
+                        <input type="text" class="form-control" id="nick" placeholder="Ingresa tu Nick" th:field="*{nickName}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" th:field="*{name}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <a type="button" class="btn btn-secondary" href="/perfil/password">Cambiar Contraseña</a>
+                    </div>
+                </form>
+                <h2>Videojuegos Jugados</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Género</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="lista:${jugados}">
+                        <td th:text="${lista.videojuego.titulo}"></td>
+                        <td th:text="${lista.videojuego.genero}"></td>
+                        <td><a th:href="'/jugar/'+${lista.videojuego.id}" class="btn btn-primary">Jugar</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

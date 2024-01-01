@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Fission Games</title>
+    <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+<div th:insert="~{fragments/general :: navbar}"></div>
+<div class="container mt-4">
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenido a Fission Games</h1>
+        <p class="lead">Descubre los últimos juegos, noticias y novedades de nuestros videojuegos.</p>
+        <hr class="my-4">
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div th:each="juego:${listaJuegos}" class="col-md-4 mb-4">
+            <div class="card">
+                <img th:src="${juego.portada}" class="card-img-top" alt="Juego">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${juego.titulo}"></h5>
+                    <h6 th:text="${juego.genero}"></h6>
+                    <p class="card-text" th:text="${juego.descripcion}"></p>
+                    <a th:href="'/jugar/'+${juego.id}" class="btn btn-primary">Jugar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

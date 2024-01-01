@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Fission Games</title>
+    <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+<div th:insert="~{fragments/general :: navbar}"></div>
+<div class="container mt-5">
+    <h2 class="mb-4">Tabla de Videojuegos</h2>
+    <a class="btn btn-success" th:href="@{/crud/agregar}">Añadir</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Género</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="juego:${juegos}">
+                <td th:text="${juego.id}"></td>
+                <td th:text="${juego.titulo}"></td>
+                <td th:text="${juego.descripcion}"></td>
+                <td th:text="${juego.genero}"></td>
+                <td>
+                    <a th:href="'/crud/editar/'+${juego.id}" class="btn btn-primary">Editar</a>
+                    <a th:href="'/crud/eliminar/'+${juego.id}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
