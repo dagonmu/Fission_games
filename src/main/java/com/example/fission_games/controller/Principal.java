@@ -29,19 +29,6 @@ public class Principal {
         return "index";
     }
 
-    @GetMapping("/noticias")
-    public String noticias(Model model){
-        List<Noticia> listaNoticias = servicioNoticia.findAll();
-        model.addAttribute("listaNoticias", listaNoticias);
-        return "noticias";
-    }
-    @GetMapping("/videojuegos")
-    public String videojuegos(Model model){
-        List<Videojuego> listaVideojuegos = servicioVideojuego.findAll();
-        model.addAttribute("listaJuegos", listaVideojuegos);
-        return "videojuegos";
-    }
-
     @GetMapping("/panel-de-control")
     public String panel(Model model){
         return "crud/panelControl";

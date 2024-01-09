@@ -23,7 +23,7 @@
         <img th:src="${noticia.imagen}" class="card-img-top" alt="Noticia">
         <div class="card-body">
           <h5 class="card-title" th:text="${noticia.titulo}"></h5>
-          <p th:text="noticia.fecha"></p>
+          <p th:text="${noticia.fecha}"></p>
           <p class="card-text" th:text="${noticia.contenido}"></p>
           <a th:href="'/noticias/'+${noticia.id}" class="btn btn-primary">Ver mas</a>
         </div>

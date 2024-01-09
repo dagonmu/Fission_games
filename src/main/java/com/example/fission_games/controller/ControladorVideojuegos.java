@@ -24,6 +24,12 @@ public class ControladorVideojuegos {
     @Autowired
     ServicioUsuarioVideojuego servicioUsuarioVideojuego;
 
+    @GetMapping("/videojuegos")
+    public String videojuegos(Model model){
+        List<Videojuego> listaVideojuegos = servicioVideojuego.findAll();
+        model.addAttribute("listaJuegos", listaVideojuegos);
+        return "videojuegos";
+    }
     @GetMapping("jugar/{id}")
     public String jugar(Model model, @PathVariable long id, Authentication authentication){
         Videojuego videojuego = servicioVideojuego.findById(id);

@@ -39,6 +39,7 @@ public class SpringSecurity {
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/noticias").permitAll()
+                                .requestMatchers("/noticias/{id}").permitAll()
                                 .requestMatchers("/videojuegos").permitAll()
                                 .requestMatchers("/crud/**").hasRole("ADMIN")
                                 .requestMatchers("/perfil").authenticated()
