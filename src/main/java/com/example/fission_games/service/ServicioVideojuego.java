@@ -20,7 +20,9 @@ public class ServicioVideojuego {
         return repositorioVideojuego.findAll();
     }
     public List<Videojuego> findFirst3ByOrderByIdDesc(){return repositorioVideojuego.findFirst3ByOrderByIdDesc();}
-
+    public List<Videojuego> buscador(String query){
+        return repositorioVideojuego.findByTituloContainsIgnoreCaseOrDescripcionContainsIgnoreCaseOrGeneroContainsIgnoreCase(query, query, query);
+    }
     public void save(Videojuego videojuego){
         repositorioVideojuego.save(videojuego);
     }

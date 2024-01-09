@@ -12,5 +12,6 @@ public interface RepositorioNoticia extends JpaRepository<Noticia, Long> {
     public Noticia findById(long id);
     public List<Noticia> findByPublicador(User publicador);
     public List<Noticia> findFirst3ByOrderByIdDesc();
+    public List<Noticia> findByTituloContainsIgnoreCaseOrContenidoContainsIgnoreCase(String titulo, String contenido);
     public void deleteById(long id);
 }

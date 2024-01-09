@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserService {
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
+    @Override
+    public  User findByNickName(String nickName){return  userRepository.findByNickName(nickName);}
 
     private UserDto convertEntityToDto(User user){
         UserDto userDto = new UserDto();

@@ -41,8 +41,12 @@ public class AuthController {
                                BindingResult result,
                                Model model){
         User existing = userService.findByEmail(user.getEmail());
+        User existingNick = userService.findByNickName(user.getNickName());
         if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+            result.rejectValue("email", null, "Ya hay una cuenta registrada con este Email");
+        }
+        if (existingNick!=null){
+            result.rejectValue("nickName", null, "El nick ya existe");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", user);

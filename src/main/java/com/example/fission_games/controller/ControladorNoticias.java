@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 @Controller
@@ -15,8 +16,8 @@ public class ControladorNoticias {
     ServicioNoticia servicioNoticia;
 
     @GetMapping("/noticias")
-    public String noticias(Model model){
-        List<Noticia> listaNoticias = servicioNoticia.findAll();
+    public String noticias(Model model, @RequestParam(name="q",required=false) String query){
+        List<Noticia> listaNoticias = (query==null) ? servicioNoticia.findAll() : servicioNoticia.buscador(query);
         model.addAttribute("listaNoticias", listaNoticias);
         return "noticias";
     }

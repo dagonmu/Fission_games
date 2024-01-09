@@ -23,8 +23,8 @@ public class ControladorCrudJuegos {
     StorageService storageService;
 
     @GetMapping("/videojuegos")
-    public String listaJuegos(Model model){
-        List<Videojuego> listaJuegos = servicioVideojuego.findAll();
+    public String listaJuegos(Model model, @RequestParam(name="q",required=false) String query){
+        List<Videojuego> listaJuegos = (query==null) ? servicioVideojuego.findAll() : servicioVideojuego.buscador(query);
         model.addAttribute("juegos", listaJuegos);
         return "crud/listaJuegos";
     }

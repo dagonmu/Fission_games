@@ -13,6 +13,9 @@
   <div class="jumbotron">
     <h1 class="display-4">Portal de noticias</h1>
     <p class="lead">Noticias y novedades de nuestros videojuegos.</p>
+    <form role="search">
+      <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search" name="q" th:value="${param.q}">
+    </form>
     <hr class="my-4">
   </div>
 </div>

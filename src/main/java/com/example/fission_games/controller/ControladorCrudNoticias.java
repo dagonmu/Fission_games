@@ -31,8 +31,8 @@ public class ControladorCrudNoticias {
     StorageService storageService;
 
     @GetMapping("/noticias")
-    public String listaNoticias(Model model){
-        List<Noticia> listaNoticias = servicioNoticia.findAll();
+    public String listaNoticias(Model model, @RequestParam(name="q",required=false) String query){
+        List<Noticia> listaNoticias = (query==null) ? servicioNoticia.findAll() : servicioNoticia.buscador(query);
         model.addAttribute("noticias", listaNoticias);
         return "crud/listaNoticias";
     }

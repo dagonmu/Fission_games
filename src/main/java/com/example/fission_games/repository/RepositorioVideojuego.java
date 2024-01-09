@@ -11,5 +11,6 @@ public interface RepositorioVideojuego extends JpaRepository<Videojuego,Long> {
     public Videojuego findById(long id);
     public List<Videojuego> findAll();
     public List<Videojuego> findFirst3ByOrderByIdDesc();
+    public List<Videojuego> findByTituloContainsIgnoreCaseOrDescripcionContainsIgnoreCaseOrGeneroContainsIgnoreCase(String titulo, String descripcion, String genero);
     public void deleteById(long id);
 }

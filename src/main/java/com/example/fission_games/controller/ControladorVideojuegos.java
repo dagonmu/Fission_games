@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class ControladorVideojuegos {
     ServicioUsuarioVideojuego servicioUsuarioVideojuego;
 
     @GetMapping("/videojuegos")
-    public String videojuegos(Model model){
-        List<Videojuego> listaVideojuegos = servicioVideojuego.findAll();
+    public String videojuegos(Model model, @RequestParam(name="q",required=false) String query){
+        List<Videojuego> listaVideojuegos = (query==null) ? servicioVideojuego.findAll() : servicioVideojuego.buscador(query);
         model.addAttribute("listaJuegos", listaVideojuegos);
         return "videojuegos";
     }
