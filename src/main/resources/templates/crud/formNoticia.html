@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Fission Games</title>
+  <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+<div th:insert="~{fragments/general :: navbar}"></div>
+<div class="container mt-5">
+  <h2 class="mb-4">Formulario de Noticias</h2>
+
+  <!-- Formulario -->
+  <form method="post" enctype="multipart/form-data" th:action="${noticia.id != 0} ? @{/crud/noticia/editar/post} : @{/crud/noticia/agregar/post}" th:object="${noticia}">
+    <input type="hidden" th:value="${noticia.id != 0} ? ${noticia.id}">
+    <h4 class="mb-3" th:text="${noticia.id != 0} ? 'Editar noticia' : 'Nueva noticia'"></h4>
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input type="text" class="form-control mb-3" id="titulo" placeholder="Ingrese el título de la noticia" th:field="*{titulo}">
+      <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}" class="help-block" id="titulo-error"></span>
+    </div>
+    <div class="form-group">
+      <label for="contenido">Contenido</label>
+      <input type="text" class="form-control mb-3" id="contenido" placeholder="Ingrese el contenido de la noticia" th:field="*{contenido}">
+    </div>
+    <div class="form-group">
+      <label for="file">Portada</label>
+      <input type="file" class="form-control mb-3" name="file" id="file" accept="image/*">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+</div>
+</body>
+</html>

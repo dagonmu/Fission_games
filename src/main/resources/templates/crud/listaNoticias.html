@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Fission Games</title>
+  <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+<div th:insert="~{fragments/general :: navbar}"></div>
+<div class="container mt-5">
+  <h2 class="mb-4">Tabla de Noticias</h2>
+  <a class="btn btn-success" th:href="@{/crud/noticia/agregar}">Añadir</a>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Contenido</th>
+        <th>Fecha</th>
+        <th>Publicador</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="noticia:${noticias}">
+        <td th:text="${noticia.id}"></td>
+        <td th:text="${noticia.titulo}"></td>
+        <td th:text="${noticia.contenido}"></td>
+        <td th:text="${noticia.fecha}"></td>
+        <td th:text="${noticia.publicador.nickName}"></td>
+        <td>
+          <a th:href="'/crud/noticia/editar/'+${noticia.id}" class="btn btn-primary">Editar</a>
+          <a th:href="'/crud/noticia/eliminar/'+${noticia.id}" class="btn btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

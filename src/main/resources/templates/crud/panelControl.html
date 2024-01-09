@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Panel de Control</title>
+  <div th:insert="~{fragments/general :: headerfiles}"></div>
+
+</head>
+<body>
+<div id="navbar" th:insert="~{fragments/general :: navbar}"></div>
+<!-- Contenido principal -->
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title text-center mb-3">Panel de Control</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="row mb-3">
+        <!-- Primera fila de enlaces -->
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-bell h1 text-warning mb-3"></i>
+          <a href="/crud/noticias">
+            <span class="h5">Noticias</span>
+          </a>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-controller h1 text-warning mb-3"></i>
+          <a href="/crud/videojuegos">
+            <span class="h5">Videojuegos</span>
+          </a>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-people h1 text-warning mb-3"></i>
+          <a href="/crud/usuarios">
+            <span class="h5">Usuarios</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -13,7 +13,7 @@
   <h2 class="mb-4">Formulario de Videojuegos</h2>
 
   <!-- Formulario -->
-  <form method="post" enctype="multipart/form-data" th:action="${juego.id != 0} ? @{/crud/editar/post} : @{/crud/agregar/post}" th:object="${juego}">
+  <form method="post" enctype="multipart/form-data" th:action="${juego.id != 0} ? @{/crud/juego/editar/post} : @{/crud/juego/agregar/post}" th:object="${juego}">
     <input type="hidden" th:value="${juego.id != 0} ? ${juego.id}">
     <h4 class="mb-3" th:text="${juego.id != 0} ? 'Editar juego' : 'Nuevo juego'"></h4>
     <div class="form-group">

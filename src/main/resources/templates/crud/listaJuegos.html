@@ -11,7 +11,7 @@
 <div th:insert="~{fragments/general :: navbar}"></div>
 <div class="container mt-5">
     <h2 class="mb-4">Tabla de Videojuegos</h2>
-    <a class="btn btn-success" th:href="@{/crud/agregar}">Añadir</a>
+    <a class="btn btn-success" th:href="@{/crud/juego/agregar}">Añadir</a>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -30,8 +30,8 @@
                 <td th:text="${juego.descripcion}"></td>
                 <td th:text="${juego.genero}"></td>
                 <td>
-                    <a th:href="'/crud/editar/'+${juego.id}" class="btn btn-primary">Editar</a>
-                    <a th:href="'/crud/eliminar/'+${juego.id}" class="btn btn-danger">Eliminar</a>
+                    <a th:href="'/crud/juego/editar/'+${juego.id}" class="btn btn-primary">Editar</a>
+                    <a th:href="'/crud/juego/eliminar/'+${juego.id}" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
             </tbody>

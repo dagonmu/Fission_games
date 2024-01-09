@@ -17,11 +17,19 @@
   <div th:fragment="navbar">
     <header class="py-3 mb-4 border-bottom" style="background-color: #00aac0;">
       <div class="row">
-        <div class="col-7 d-flex flex-wrap justify-content-end">
+
+        <div class="col-4 d-flex flex-wrap justify-content-start">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/noticias" class="nav-link">Noticias</a></li>
+            <li class="nav-item"><a href="/videojuegos" class="nav-link">Videojuegos</a></li>
+          </ul>
+        </div>
+
+        <div class="col-4 d-flex flex-wrap justify-content-center">
           <a href="/"><img class="animacion" src="/img/FissionGamesLogo.jpg" width="200" style="margin-right: 20px;"></a>
         </div>
 
-        <div class="col-5 d-flex flex-wrap justify-content-end">
+        <div class="col-4 d-flex flex-wrap justify-content-end">
           <ul class="nav nav-pills">
             <li class="nav-item" sec:authorize="isAnonymous()"><a href="/login" class="nav-link">Login</a></li>
             <li class="nav-item" sec:authorize="isAnonymous()"><a href="/register" class="nav-link">Registro</a></li>
@@ -34,7 +42,7 @@
               <li class="dropdown-item"><a href="/perfil" class="nav-link">Perfil</a></li>
               <li class="dropdown-item"><a href="/logout" class="nav-link">Salir</a></li>
               <div class="dropdown-divider" sec:authorize="hasRole('ADMIN')"></div>
-              <li class="dropdown-item" sec:authorize="hasRole('ADMIN')"><a href="/crud/lista" class="nav-link">Administración de Videojuegos</a></li>
+              <li class="dropdown-item" sec:authorize="hasRole('ADMIN')"><a href="/panel-de-control" class="nav-link">Panel de control</a></li>
             </ul>
           </div>
         </div>

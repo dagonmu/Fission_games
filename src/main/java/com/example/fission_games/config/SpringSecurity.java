@@ -38,11 +38,14 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/").permitAll()
+                                .requestMatchers("/noticias").permitAll()
+                                .requestMatchers("/videojuegos").permitAll()
                                 .requestMatchers("/crud/**").hasRole("ADMIN")
                                 .requestMatchers("/perfil").authenticated()
                                 .requestMatchers("/perfil/password").authenticated()
                                 .requestMatchers("/perfil/password/change").authenticated()
                                 .requestMatchers("/jugar/{id}").authenticated()
+                                .requestMatchers("/panel-de-control").hasRole("ADMIN")
                                 .requestMatchers(resources).permitAll()
                 ).formLogin(
                         form -> form

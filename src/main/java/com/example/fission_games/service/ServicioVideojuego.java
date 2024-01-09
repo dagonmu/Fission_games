@@ -19,6 +19,7 @@ public class ServicioVideojuego {
     public List<Videojuego> findAll(){
         return repositorioVideojuego.findAll();
     }
+    public List<Videojuego> findFirst3ByOrderByIdDesc(){return repositorioVideojuego.findFirst3ByOrderByIdDesc();}
 
     public void save(Videojuego videojuego){
         repositorioVideojuego.save(videojuego);

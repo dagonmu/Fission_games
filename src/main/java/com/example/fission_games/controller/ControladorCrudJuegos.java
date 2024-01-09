@@ -22,18 +22,18 @@ public class ControladorCrudJuegos {
     @Autowired
     StorageService storageService;
 
-    @GetMapping("/lista")
+    @GetMapping("/videojuegos")
     public String listaJuegos(Model model){
         List<Videojuego> listaJuegos = servicioVideojuego.findAll();
         model.addAttribute("juegos", listaJuegos);
         return "crud/listaJuegos";
     }
-    @GetMapping("/agregar")
+    @GetMapping("/juego/agregar")
     public String agregarJuego(Model model){
         model.addAttribute("juego", new Videojuego());
         return "crud/formJuego";
     }
-    @PostMapping("/agregar/post")
+    @PostMapping("/juego/agregar/post")
     public String postJuego(@Valid @ModelAttribute("formJuego") Videojuego juego, BindingResult result, @RequestParam("file")MultipartFile file) {
         if (result.hasErrors()) {
             return "crud/formJuego";
@@ -47,18 +47,18 @@ public class ControladorCrudJuegos {
                         .fromMethodName(FileUploadController.class, "serveFile", imagen).build().toUriString());
             }
             servicioVideojuego.save(juego);
-            return "redirect:/crud/lista";
+            return "redirect:/crud/videojuegos";
         }
     }
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/juego/editar/{id}")
     public String editar(@PathVariable long id, Model model){
         Videojuego juego = servicioVideojuego.findById(id);
         model.addAttribute("juego", juego);
         return "crud/formJuego";
     }
 
-    @PostMapping("/editar/post")
+    @PostMapping("/juego/editar/post")
     public String postEdit(@Valid @ModelAttribute("formJuego") Videojuego juego, BindingResult result, @RequestParam("file") MultipartFile file) {
         if (result.hasErrors()) {
             return "crud/formJuego";
@@ -72,13 +72,13 @@ public class ControladorCrudJuegos {
                         .fromMethodName(FileUploadController.class, "serveFile", imagen).build().toUriString());
             }
             servicioVideojuego.save(juego);
-            return "redirect:/crud/lista";
+            return "redirect:/crud/videojuegos";
         }
     }
 
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/juego/eliminar/{id}")
     public String delete(@PathVariable long id){
         servicioVideojuego.deleteById(id);
-        return "redirect:/crud/lista";
+        return "redirect:/crud/videojuegos";
     }
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface RepositorioVideojuego extends JpaRepository<Videojuego,Long> {
     public Videojuego findById(long id);
     public List<Videojuego> findAll();
+    public List<Videojuego> findFirst3ByOrderByIdDesc();
     public void deleteById(long id);
 }
