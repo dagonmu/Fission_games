@@ -7,20 +7,19 @@
   <title>Fission Games</title>
   <div th:replace="fragments/general :: headerfiles"></div>
 </head>
-<body class="container text-center">
+<body>
 <div th:replace="fragments/general :: navbar"></div>
+<div class="container text-center">
+  <h1 class="mt-5" th:text="${juego.titulo}"></h1>
 
+  <div class="ratio ratio-16x9">
+    <iframe th:src="${juego.enlace}" allowfullscreen></iframe>
+  </div>
 
-<h1 class="mt-5" th:text="${juego.titulo}"></h1>
-
-<div class="ratio ratio-16x9">
-  <iframe th:src="${juego.enlace}" allowfullscreen></iframe>
-</div>
-
-<div id="controls-container" class="mt-4">
-  <h2>Controles:</h2>
-  <p th:text="${juego.controles}"></p>
-</div>
+  <div class="mt-4">
+    <h2>Controles:</h2>
+    <p th:text="${juego.controles}"></p>
+  </div>
 
 </div>
 </body>
