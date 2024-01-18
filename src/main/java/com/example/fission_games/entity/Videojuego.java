@@ -10,7 +10,6 @@ public class Videojuego {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(unique = true)
     @NotEmpty
     private String titulo;
 

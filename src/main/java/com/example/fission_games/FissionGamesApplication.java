@@ -5,13 +5,11 @@ import com.example.fission_games.entity.Role;
 import com.example.fission_games.entity.User;
 import com.example.fission_games.entity.Videojuego;
 import com.example.fission_games.repository.RoleRepository;
-import com.example.fission_games.service.ServicioNoticia;
 import com.example.fission_games.service.ServicioVideojuego;
 import com.example.fission_games.service.UserService;
 import com.example.fission_games.storage.StorageProperties;
 import com.example.fission_games.storage.StorageService;
 import com.github.javafaker.Faker;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -91,39 +89,44 @@ public class FissionGamesApplication {
 		return args -> {
 			List<Videojuego> listaJuegos = servicioVideojuego.findAll();
 			Faker faker = new Faker(new Locale("es-ES"));
-			if(listaJuegos.isEmpty()){
-				for(int i = 0; i<10;i++) {
-					Videojuego videojuego1 = new Videojuego();
-					Videojuego videojuego2 = new Videojuego();
-					Videojuego videojuego3 = new Videojuego();
-					Noticia noticia1 = new Noticia();
-					Noticia noticia2 = new Noticia();
-					Noticia noticia3 = new Noticia();
+			try{
+				if(listaJuegos.isEmpty()){
+					for(int i = 0; i<10;i++) {
+						Videojuego videojuego1 = new Videojuego();
+						Videojuego videojuego2 = new Videojuego();
+						Videojuego videojuego3 = new Videojuego();
+						Noticia noticia1 = new Noticia();
+						Noticia noticia2 = new Noticia();
+						Noticia noticia3 = new Noticia();
 
-					videojuego1.setTitulo(faker.book().title());
-					videojuego1.setDescripcion(faker.chuckNorris().fact());
-					videojuego1.setGenero("Arcade");
-					videojuego1.setEnlace("https://tetris-fission.netlify.app/");
-					videojuego1.setPortada("http://localhost:9000/files/Tetris-portada.jpeg");
-					videojuego1.setControles("Movimiento: <- | -> ---------- Rotación: F | G");
+						videojuego1.setTitulo(faker.book().title());
+						videojuego1.setDescripcion(faker.chuckNorris().fact());
+						videojuego1.setGenero("Arcade");
+						videojuego1.setEnlace("https://tetris-fission.netlify.app/");
+						videojuego1.setPortada("http://localhost:9000/files/Tetris-portada.jpeg");
+						videojuego1.setControles("Movimiento: <- | -> ---------- Rotación: F | G");
 
-					videojuego2.setTitulo(faker.book().title());
-					videojuego2.setDescripcion(faker.chuckNorris().fact());
-					videojuego2.setGenero("Arcade");
-					videojuego2.setEnlace("https://snake-fission.netlify.app/");
-					videojuego2.setPortada("http://localhost:9000/files/Snake-portada.jpeg");
+						videojuego2.setTitulo(faker.book().title());
+						videojuego2.setDescripcion(faker.chuckNorris().fact());
+						videojuego2.setGenero("Arcade");
+						videojuego2.setEnlace("https://snake-fission.netlify.app/");
+						videojuego2.setPortada("http://localhost:9000/files/Snake-portada.jpeg");
 
-					videojuego3.setTitulo(faker.book().title());
-					videojuego3.setDescripcion(faker.chuckNorris().fact());
-					videojuego3.setGenero("Plataformas");
-					videojuego3.setEnlace("https://tribal-run.netlify.app/");
-					videojuego3.setPortada("http://localhost:9000/files/Tribal Run-portada.png");
-					videojuego3.setControles("Movimiento: <- | -> ------ Ataque: Z ---------- Salto: Espacio");
+						videojuego3.setTitulo(faker.book().title());
+						videojuego3.setDescripcion(faker.chuckNorris().fact());
+						videojuego3.setGenero("Plataformas");
+						videojuego3.setEnlace("https://tribal-run.netlify.app/");
+						videojuego3.setPortada("http://localhost:9000/files/Tribal Run-portada.png");
+						videojuego3.setControles("Movimiento: <- | -> ------ Ataque: Z ---------- Salto: Espacio");
 
-					servicioVideojuego.save(videojuego1);
-					servicioVideojuego.save(videojuego2);
-					servicioVideojuego.save(videojuego3);
+						servicioVideojuego.save(videojuego1);
+						servicioVideojuego.save(videojuego2);
+						servicioVideojuego.save(videojuego3);
+					}
 				}
+			}catch (Exception e){
+				e.printStackTrace();
+				System.out.println("Fallo en la creacion de videojuegos inicial, se crearon: " + servicioVideojuego.findAll().size() + " juegos");
 			}
 		};
 	}
