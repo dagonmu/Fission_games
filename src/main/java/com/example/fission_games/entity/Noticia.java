@@ -21,6 +21,6 @@ public class Noticia {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
     private String imagen;
-    @OneToOne
+    @ManyToOne
     private User publicador;
 }

@@ -14,7 +14,7 @@
 
   <!-- Formulario -->
   <form method="post" enctype="multipart/form-data" th:action="${juego.id != 0} ? @{/crud/juego/editar/post} : @{/crud/juego/agregar/post}" th:object="${juego}">
-    <input type="hidden" th:value="${juego.id != 0} ? ${juego.id}">
+    <input type="hidden" th:field="*{id}">
     <h4 class="mb-3" th:text="${juego.id != 0} ? 'Editar juego' : 'Nuevo juego'"></h4>
     <div class="form-group">
       <label for="titulo">Título</label>

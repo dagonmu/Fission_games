@@ -14,7 +14,7 @@
 
   <!-- Formulario -->
   <form method="post" enctype="multipart/form-data" th:action="${noticia.id != 0} ? @{/crud/noticia/editar/post} : @{/crud/noticia/agregar/post}" th:object="${noticia}">
-    <input type="hidden" th:value="${noticia.id != 0} ? ${noticia.id}">
+    <input type="hidden" th:field="*{id}">
     <h4 class="mb-3" th:text="${noticia.id != 0} ? 'Editar noticia' : 'Nueva noticia'"></h4>
     <div class="form-group">
       <label for="titulo">Título</label>
