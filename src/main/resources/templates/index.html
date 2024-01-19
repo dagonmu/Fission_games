@@ -6,45 +6,66 @@
     <meta charset="UTF-8">
     <title>Fission Games</title>
     <div th:insert="~{fragments/general :: headerfiles}"></div>
+    <script src="/js/carrusel.js"></script>
 </head>
 <body>
 <div th:insert="~{fragments/general :: navbar}"></div>
 <div class="container mt-4">
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h1 class="display-4">Bienvenido a Fission Games</h1>
         <p class="lead">Descubre los últimos juegos, noticias y novedades de nuestros videojuegos.</p>
         <hr class="my-4">
     </div>
 </div>
 <div class="container">
-    <h2 class="text-center">Noticias</h2>
-    <div class="row">
-        <div th:each="noticia:${listaNoticias}" class="col-md-4 mb-4">
-            <div class="card">
-                <img th:src="${noticia.imagen}" class="card-img-top img-fluid" alt="Noticia">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${noticia.titulo}"></h5>
-                    <p th:text="${noticia.fecha}"></p>
-                    <p class="card-text" th:text="${#strings.abbreviate(noticia.contenido,100)}"></p>
-                    <a th:href="'/noticias/'+${noticia.id}" class="btn btn-primary">Ver mas</a>
-                </div>
+    <h2 class="text-center mb-3">Noticias</h2>
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" th:each="noticia, i:${listaNoticias}">
+            <div class="text-center 1 carousel-item" th:classappend="${i.index==0} ? 'active' : ''">
+                <h5 th:text="${noticia.titulo}"></h5>
+                <p th:text="${noticia.fecha}"></p>
+                <p th:text="${#strings.abbreviate(noticia.contenido,50)}"></p>
+                <a th:href="'/noticias/'+${noticia.id}"><img th:src="${noticia.imagen}" alt="Noticia" width="600"></a>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <hr class="my-4">
-    <div class="row">
-        <h2 class="text-center">Videojuegos</h2>
-        <div th:each="juego:${listaJuegos}" class="col-md-4 mb-4">
-            <div class="card">
-                <img th:src="${juego.portada}" class="card-img-top img-fluid" alt="Juego">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${juego.titulo}"></h5>
-                    <h6 th:text="${juego.genero}"></h6>
-                    <p class="card-text" th:text="${juego.descripcion}"></p>
-                    <a th:href="'/jugar/'+${juego.id}" class="btn btn-primary">Jugar</a>
-                </div>
+    <h2 class="text-center mb-3">Videojuegos</h2>
+    <div id="carouselExampleIndicators2" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" th:each="juego, i:${listaJuegos}">
+            <div class="text-center 2 carousel-item" th:classappend="${i.index==0} ? 'active' : ''">
+                <h5 th:text="${juego.titulo}"></h5>
+                <p th:text="${juego.genero}"></p>
+                <p th:text="${#strings.abbreviate(juego.descripcion,50)}"></p>
+                <a th:href="'/jugar/'+${juego.id}"><img th:src="${juego.portada}" alt="Juego" width="600"></a>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
 </div>
