@@ -16,8 +16,8 @@ public class ControladorNoticias {
     ServicioNoticia servicioNoticia;
 
     @GetMapping("/noticias")
-    public String noticias(Model model, @RequestParam(name="q",required=false) String query){
-        List<Noticia> listaNoticias = (query==null) ? servicioNoticia.findAll() : servicioNoticia.buscador(query);
+    public String noticias(Model model){
+        List<Noticia> listaNoticias = servicioNoticia.findAll();
         model.addAttribute("listaNoticias", listaNoticias);
         return "noticias";
     }

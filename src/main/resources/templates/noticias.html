@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Fission Games</title>
   <div th:insert="~{fragments/general :: headerfiles}"></div>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <div th:insert="~{fragments/general :: navbar}"></div>
@@ -13,27 +14,45 @@
   <div class="jumbotron">
     <h1 class="display-4">Portal de noticias</h1>
     <p class="lead">Noticias y novedades de nuestros videojuegos.</p>
-    <form role="search">
-      <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search" name="q" th:value="${param.q}">
-    </form>
     <hr class="my-4">
   </div>
 </div>
 <div class="container">
   <div class="row">
-    <div th:each="noticia:${listaNoticias}" class="col-md-4 mb-4">
-      <div class="card">
-        <img th:src="${noticia.imagen}" class="card-img-top" alt="Noticia">
-        <div class="card-body">
-          <h5 class="card-title" th:text="${noticia.titulo}"></h5>
-          <p th:text="${noticia.fecha}"></p>
-          <p class="card-text" th:text="${noticia.contenido}"></p>
+    <table id="tabla" class="table table-striped" data-ordering="false">
+      <thead>
+      <tr>
+        <th class="col-1"></th>
+        <th class="col-1">Titulo</th>
+        <th class="col-1">Fecha</th>
+        <th class="col-1">Contenido</th>
+        <th class="col-1"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="noticia:${listaNoticias}" >
+        <td class="col-1">
+          <img th:src="${noticia.imagen}" width="50">
+        </td>
+        <td class="col-1" th:text="${noticia.titulo}"></td>
+        <td class="col-1" th:text="${noticia.fecha}"></td>
+        <td class="col-1" th:text="${#strings.abbreviate(noticia.contenido,30)}"></td>
+        <td class="col-1">
           <a th:href="'/noticias/'+${noticia.id}" class="btn btn-primary">Ver mas</a>
-        </div>
-      </div>
-    </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+</script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<!--JS-->
+<script type="text/javascript" src="/js/paginacion.js"></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Fission Games</title>
+    <div th:insert="~{fragments/general :: headerfiles}"></div>
+</head>
+<body>
+<div th:insert="~{fragments/general :: navbar}"></div>
+<div class="container">
+    <div class="row p-3">
+        <div class="col text-center">
+
+            <img th:src="${juego.portada}" width="300"></br>
+            <h4 th:text="${juego.titulo}"></h4>
+            <h6 th:text="${juego.genero}"></h6></br>
+            <p th:text="${juego.descripcion}"></p>
+
+            <hr class="my-4">
+
+            <h4 class="mb-2">Ultimos comentarios</h4>
+                <div th:each="comentario:${comentarios}" class="bg-light text-dark">
+                    <h6 th:text="${comentario.titulo}"></h6>
+                    <p th:text="${comentario.fecha}"></p>
+                    <p th:text="${comentario.contenido}"></p>
+                </div>
+            <hr class="my-4">
+            <h4>Nuevo Comentario</h4>
+            <form action="/comentario/add" th:object="${nuevoComentario}" method="post">
+                <div class="row">
+                    <input type="hidden" class="form-control" name="id" th:value="${juego.id}">
+                    <div class="col-md-12">
+                        <div class="form-group mb-2">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" th:field="*{titulo}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group mb-2">
+                            <label for="contenido">Contenido</label>
+                            <textarea class="form-control" name="contenido" id="contenido" rows="3" th:field="*{contenido}" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

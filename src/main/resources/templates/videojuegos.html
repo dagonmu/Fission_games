@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Fission Games</title>
     <div th:insert="~{fragments/general :: headerfiles}"></div>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
 <div th:insert="~{fragments/general :: navbar}"></div>
@@ -13,27 +14,52 @@
     <div class="jumbotron">
         <h1 class="display-4">Portal de videojuegos</h1>
         <p class="lead">Descubre nuestros videojuegos</p>
-        <form role="search">
-            <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search" name="q" th:value="${param.q}">
-        </form>
         <hr class="my-4">
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div th:each="juego:${listaJuegos}" class="col-md-4 mb-4">
-            <div class="card">
-                <img th:src="${juego.portada}" class="card-img-top" alt="Juego">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${juego.titulo}"></h5>
-                    <h6 th:text="${juego.genero}"></h6>
-                    <p class="card-text" th:text="${juego.descripcion}"></p>
-                    <a th:href="'/jugar/'+${juego.id}" class="btn btn-primary">Jugar</a>
-                </div>
-            </div>
-        </div>
+
+        <table id="tabla" class="table table-striped" data-ordering="false">
+            <thead>
+                <tr>
+                    <th class="col-2"></th>
+                    <th class="col-2">Titulo</th>
+                    <th class="col-2">Genero</th>
+                    <th class="col-2">Descripción</th>
+                    <th class="col-1"></th>
+                    <th class="col-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="juego:${listaJuegos}" >
+                    <td class="col-2">
+                        <img th:src="${juego.portada}" width="50">
+                    </td>
+                    <td class="col-2" th:text="${juego.titulo}"></td>
+                    <td class="col-2" th:text="${juego.genero}"></td>
+                    <td class="col-2" th:text="${#strings.abbreviate(juego.descripcion,30)}"></td>
+                    <td class="col-1">
+                        <a th:href="'/jugar/'+${juego.id}" class="btn btn-success">Jugar</a>
+                    </td>
+                    <td class="col-1">
+                        <a th:href="'/videojuego/'+${juego.id}" class="btn btn-primary">Ver mas</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
-</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+</script>
+<!-- DATATABLES -->
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<!-- BOOTSTRAP -->
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<!--JS-->
+<script type="text/javascript" src="/js/paginacion.js"></script>
 </body>
 </html>
